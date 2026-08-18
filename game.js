@@ -197,32 +197,16 @@ function createSmoke(){
 }
 document.addEventListener("DOMContentLoaded",createSmoke);
 
-/* v0.8 — no forced fullscreen. URL/browser controls intentionally remain visible. */
-gameStarted=true;
-document.body.classList.add("game-started");
-
-function fitV8(){
- const game=document.getElementById("game");
- if(!game)return;
- const vv=window.visualViewport;
- const W=vv?vv.width:window.innerWidth, H=vv?vv.height:window.innerHeight;
- const ratio=16/9;
- let w=W,h=w/ratio;
- if(h>H){h=H;w=h*ratio}
- game.style.width=w+"px";game.style.height=h+"px";
-}
-window.addEventListener("resize",fitV8);
-window.addEventListener("orientationchange",()=>setTimeout(fitV8,100));
-if(window.visualViewport) visualViewport.addEventListener("resize",fitV8);
+/* v0.9 extra subtle life points */
 document.addEventListener("DOMContentLoaded",()=>{
- fitV8();
  const fx=document.getElementById("fxStage");
- if(fx){
-   [[48,31,6],[39,61,4],[68,53,4],[79,67,3]].forEach((a,i)=>{
-     const e=document.createElement("i");e.className="ambient-glow";
-     e.style.left=a[0]+"%";e.style.top=a[1]+"%";
-     e.style.width=a[2]+"%";e.style.aspectRatio="1";
-     e.style.animationDelay=(i*.65)+"s";fx.appendChild(e);
-   });
- }
+ if(!fx)return;
+ const pts=[[48,29,2.8],[52,35,4.1],[37,49,3.5],[43,60,4.7],[68,47,3.1],[74,62,4.4],[29,68,3.8],[58,55,5.0]];
+ pts.forEach(([x,y,t],i)=>{
+   const e=document.createElement("i");
+   e.className="building-shimmer";
+   e.style.left=x+"%"; e.style.top=y+"%"; e.style.setProperty("--t",t+"s");
+   e.style.animationDelay=(-i*.47)+"s";
+   fx.appendChild(e);
+ });
 });

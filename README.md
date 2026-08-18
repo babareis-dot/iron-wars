@@ -1,12 +1,5 @@
-# IRON WARS v0.8
-- Tarayıcı adres/link alanı görünür kalır; fullscreen zorlanmaz.
-- Oyun mevcut tarayıcı alanına 16:9 olarak tamamen sığar, kesilmez.
-- Yeni gerçekçi üs sahnesi.
-- Bacalarda hareketli duman.
-- Bina/uyarı ışıkları ve pist ışıkları.
-- Deniz parıltısı.
-- Hafif servis aracı hareketleri.
-- Ek ortam ışığı animasyonları.
-- Bina dokunma/yükseltme sistemi korunur.
-
-GitHub'a ZIP içindeki tüm dosyaları mevcut dosyaların üzerine yükleyin.
+# IRON WARS v0.9
+- Görsel ekranı kenardan kenara doldurur; yan siyah boşluk hedeflenmez.
+- Üs hareketleri özellikle hafif tutuldu: duman, bina ışıkları, pist ışıkları, su parıltısı, küçük servis araçları ve çok hafif kamera nefesi.
+- v0.6 tam ekran/yatay mod akışı ve bina etkileşimleri korunur.
+- GitHub'a ZIP içindeki tüm dosyaları eskilerin üzerine yükleyin.
