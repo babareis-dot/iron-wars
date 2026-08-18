@@ -1,43 +1,14 @@
-const state={
- resources:{Para:["💵","2.45M"],Petrol:["🛢","1.87M"],Çelik:["🔩","3.24M"],Bakır:["🟫","1.12M"],Altın:["🪙","8,250"]},
- buildings:[
-  {id:"hq",name:"KOMUTA MERKEZİ",lv:20,x:50,y:38,hp:100,power:9800,prod:"Komuta"},
-  {id:"research",name:"ARAŞTIRMA MERKEZİ",lv:18,x:34,y:43,hp:96,power:6200,prod:"Teknoloji"},
-  {id:"air",name:"HAVA ÜSSÜ",lv:17,x:69,y:40,hp:91,power:7300,prod:"Uçak"},
-  {id:"tank",name:"TANK ÜRETİM MERKEZİ",lv:16,x:48,y:63,hp:93,power:6800,prod:"Zırhlı"},
-  {id:"steel",name:"ÇELİK FABRİKASI",lv:18,x:31,y:69,hp:88,power:5100,prod:"+18K/s"},
-  {id:"dock",name:"TERSANE",lv:16,x:69,y:67,hp:94,power:7900,prod:"Donanma"},
-  {id:"defense",name:"HAVA SAVUNMA",lv:15,x:77,y:52,hp:99,power:8600,prod:"Savunma"}
- ],
- queue:[
-  ["ÇELİK FABRİKASI","Lv.18","03:42:11"],
-  ["TANK ÜRETİM","Lv.16","01:25:45"],
-  ["HAVA ÜSSÜ","Lv.15","02:19:07"]
- ]
-};
-function render(){
- document.getElementById("resources").innerHTML=Object.entries(state.resources).map(([k,v])=>`<div class="res">${v[0]} <b>${v[1]}</b><small>${k}</small></div>`).join("");
- document.getElementById("buildQueue").innerHTML=state.queue.map(q=>`<div class="queue"><b>${q[0]}</b><button onclick="event.stopPropagation();showToast('Hızlandırıldı')">HIZLANDIR</button><small>${q[1]} · ${q[2]}</small></div>`).join("");
- document.getElementById("hotspots").innerHTML=state.buildings.map(b=>`<button class="hotspot" style="left:${b.x}%;top:${b.y}%" onclick="openBuilding('${b.id}')"><span>${b.name}<br>Lv.${b.lv}</span></button>`).join("");
-}
-function openBuilding(id){
- const b=state.buildings.find(x=>x.id===id);
- document.getElementById("modalTitle").textContent=`${b.name} — Lv.${b.lv}`;
- document.getElementById("modalBody").innerHTML=`<div class="stats"><div class="stat"><b>${b.hp}%</b>DAYANIKLILIK</div><div class="stat"><b>${b.power.toLocaleString()}</b>GÜÇ</div><div class="stat"><b>${b.prod}</b>ÜRETİM</div></div><div class="action"><button onclick="upgrade('${id}')">⬆ SEVİYE YÜKSELT</button><button onclick="showToast('Bina detayları')">ℹ DETAYLAR</button></div>`;
- document.getElementById("modal").classList.remove("hidden");
-}
-function upgrade(id){
- const b=state.buildings.find(x=>x.id===id);
- b.lv++; b.power=Math.round(b.power*1.12);
- closeModal(); render(); showToast(`${b.name} Lv.${b.lv} oldu`);
-}
-function openProduction(){
- document.getElementById("modalTitle").textContent="ASKERİ ÜRETİM";
- document.getElementById("modalBody").innerHTML=`<div class="stats"><div class="stat"><b>120</b>M1 TANK</div><div class="stat"><b>48</b>SAVAŞ UÇAĞI</div><div class="stat"><b>16</b>FIRKATEYN</div></div><div class="action"><button onclick="showToast('Tank üretimi başladı')">TANK ÜRET</button><button onclick="showToast('Uçak üretimi başladı')">UÇAK ÜRET</button></div>`;
- document.getElementById("modal").classList.remove("hidden");
-}
-function closeModal(){document.getElementById("modal").classList.add("hidden")}
-function showToast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("show");clearTimeout(window._toastTimer);window._toastTimer=setTimeout(()=>e.classList.remove("show"),1400)}
-function toggleBuild(){document.getElementById("buildPanel").classList.toggle("open")}
-async function enterFullscreen(){try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen?.();else await document.exitFullscreen?.()}catch(e){}}
-render();
+const buildings=[
+{id:"hq",name:"KOMUTA MERKEZİ",level:20,power:9800,status:"AKTİF",x:43,y:18,w:20,h:30,desc:"Üssün ana yönetim merkezi."},
+{id:"research",name:"ARAŞTIRMA MERKEZİ",level:18,power:6200,status:"ARAŞTIRIYOR",x:23,y:27,w:18,h:23,desc:"Yeni askeri teknolojileri araştırır."},
+{id:"air",name:"HAVA ÜSSÜ",level:17,power:7300,status:"HAZIR",x:62,y:27,w:20,h:24,desc:"Savaş uçaklarının üretim ve konuşlanma merkezi."},
+{id:"tank",name:"TANK ÜRETİM MERKEZİ",level:16,power:6800,status:"ÜRETİMDE",x:39,y:49,w:25,h:22,desc:"Zırhlı birlik ve tank üretir."},
+{id:"steel",name:"ÇELİK FABRİKASI",level:18,power:5100,status:"+18K/s",x:21,y:60,w:20,h:24,desc:"Üs geliştirmeleri için çelik üretir."},
+{id:"dock",name:"TERSANE",level:16,power:7900,status:"HAZIR",x:62,y:52,w:27,h:30,desc:"Deniz birlikleri ve savaş gemileri üretir."}
+];let selected=null;
+const z=document.getElementById("tapzones");buildings.forEach(b=>{const e=document.createElement("button");e.className="zone";e.style=`left:${b.x}%;top:${b.y}%;width:${b.w}%;height:${b.h}%`;e.onclick=()=>openB(b.id);z.appendChild(e)});
+function openB(id){selected=buildings.find(b=>b.id===id);document.getElementById("title").textContent=selected.name;document.getElementById("desc").textContent=selected.desc;document.getElementById("level").textContent="Lv."+selected.level;document.getElementById("power").textContent=selected.power.toLocaleString()+" GÜÇ";document.getElementById("status").textContent=selected.status;document.getElementById("panel").classList.remove("hidden")}
+function closePanel(){document.getElementById("panel").classList.add("hidden")}
+function upgrade(){if(!selected)return;selected.level++;selected.power=Math.round(selected.power*1.12);closePanel();toast(selected.name+" Lv."+selected.level+" oldu")}
+function toast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),1300)}
+async function full(){try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen?.();else await document.exitFullscreen?.()}catch(e){}}
