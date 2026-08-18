@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no"/>
+  <meta name="theme-color" content="#0b1117"/>
+  <title>IRON WARS — Global Conflict</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<div id="app">
+  <header class="topbar">
+    <div class="logo"><span class="mark">✠</span><div><b>IRON WARS</b><small>GLOBAL CONFLICT</small></div></div>
+    <div class="resources" id="resources"></div>
+    <div class="top-actions">
+      <button title="Tam ekran" onclick="toggleFullscreen()">⛶</button>
+      <button title="Posta">✉</button>
+      <button title="Ayarlar">⚙</button>
+    </div>
+  </header>
+
+  <main class="game-shell">
+    <section class="commander panel">
+      <div class="avatar">★</div>
+      <div class="cmd-info"><b>Commander</b><span>Seviye 45</span><div class="xp"><i style="width:62%"></i></div><small>26,750 / 57,000</small></div>
+      <span class="vip">VIP 6</span>
+    </section>
+
+    <aside class="left panel">
+      <h3>İNŞAAT <span>3/3</span></h3>
+      <div id="buildQueue"></div>
+      <h3>ARAŞTIRMA <span>2/2</span></h3>
+      <button class="menu-row">🧬 Askeri Teknoloji <em>01:18:44</em></button>
+      <h3>EĞİTİM <span>2/3</span></h3>
+      <button class="menu-row">🎖 Piyade Taburu <em>00:33:20</em></button>
+      <h3>ONARIM <span>1/1</span></h3>
+      <button class="menu-row">🔧 Savunma Duvarı <em>00:18:05</em></button>
+    </aside>
+
+    <section class="world" id="world">
+      <canvas id="bg"></canvas>
+      <div class="terrain-glow"></div>
+      <div class="base-grid" id="baseGrid"></div>
+
+      <div class="event-card panel">
+        <b>ÖZEL ETKİNLİK</b>
+        <div class="event-image">💥</div>
+        <span>Çelik Fırtına</span>
+        <small>2g 08:17:29</small>
+      </div>
+
+      <button class="world-btn">🌍<span>DÜNYA</span></button>
+
+      <div class="chat panel">
+        <nav><b>GENEL</b><span>İTTİFAK</span><span>ÖZEL</span></nav>
+        <p><i>[TR]Commander:</i> İttifaka hoş geldiniz!</p>
+        <p><i>[TR]General47:</i> Savunma hattını güçlendirin.</p>
+        <p><i>[TR]DarkWolf:</i> Akşam 21:00'de saldırı planı var.</p>
+        <div><input placeholder="Mesajınızı buraya yazın..."/><button>➤</button></div>
+      </div>
+    </section>
+
+    <aside class="right">
+      <button>🎁<span>ETKİNLİKLER</span><b>2</b></button>
+      <button>📦<span>PAKETLER</span><b>1</b></button>
+      <button>🏆<span>SIRALAMA</span></button>
+      <button>🛡️<span>İTTİFAK</span></button>
+      <button>✉️<span>POSTA</span><b>6</b></button>
+    </aside>
+  </main>
+
+  <footer class="dock panel">
+    <button onclick="showToast('Üs yönetimi açıldı')">🏛️<span>ÜSLER</span></button>
+    <button onclick="showToast('Bina menüsü açıldı')">🏢<span>BİNALAR</span></button>
+    <button onclick="openProduction()">🪖<span>ÜRETİM</span></button>
+    <button onclick="showToast('Birlikler açıldı')">⚔️<span>BİRLİKLER</span></button>
+    <button onclick="showToast('İttifak açıldı')">🛡️<span>İTTİFAK</span></button>
+    <button onclick="showToast('Envanter açıldı')">📦<span>ENVANTER</span></button>
+    <button class="shop" onclick="showToast('Mağaza açıldı')">🛒<span>MAĞAZA</span></button>
+  </footer>
+</div>
+
+<div id="modal" class="modal hidden">
+  <div class="modal-card panel">
+    <button class="close" onclick="closeModal()">✕</button>
+    <h2 id="modalTitle">Bina</h2>
+    <div id="modalBody"></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+<script src="game.js"></script>
+</body>
+</html>
