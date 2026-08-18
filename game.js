@@ -1,21 +1,20 @@
 const state={
- resources:{Para:["💵","2.45M"],Petrol:["🛢️","1.87M"],Çelik:["🔩","3.24M"],Bakır:["🟫","1.12M"],Altın:["🪙","8,250"]},
+ resources:{Para:["💵","2.45M"],Petrol:["🛢","1.87M"],Çelik:["🔩","3.24M"],Bakır:["🟫","1.12M"],Altın:["🪙","8,250"]},
  buildings:[
-  {id:"hq",name:"KOMUTA MERKEZİ",lv:20,x:50,y:37,hp:100,power:9800,prod:"Komuta"},
-  {id:"research",name:"ARAŞTIRMA MERKEZİ",lv:18,x:33,y:42,hp:96,power:6200,prod:"Teknoloji"},
-  {id:"air",name:"HAVA ÜSSÜ",lv:17,x:69,y:39,hp:91,power:7300,prod:"Uçak"},
-  {id:"tank",name:"TANK ÜRETİM MERKEZİ",lv:16,x:48,y:64,hp:93,power:6800,prod:"Zırhlı"},
+  {id:"hq",name:"KOMUTA MERKEZİ",lv:20,x:50,y:38,hp:100,power:9800,prod:"Komuta"},
+  {id:"research",name:"ARAŞTIRMA MERKEZİ",lv:18,x:34,y:43,hp:96,power:6200,prod:"Teknoloji"},
+  {id:"air",name:"HAVA ÜSSÜ",lv:17,x:69,y:40,hp:91,power:7300,prod:"Uçak"},
+  {id:"tank",name:"TANK ÜRETİM MERKEZİ",lv:16,x:48,y:63,hp:93,power:6800,prod:"Zırhlı"},
   {id:"steel",name:"ÇELİK FABRİKASI",lv:18,x:31,y:69,hp:88,power:5100,prod:"+18K/s"},
-  {id:"dock",name:"TERSANE",lv:16,x:68,y:66,hp:94,power:7900,prod:"Donanma"},
+  {id:"dock",name:"TERSANE",lv:16,x:69,y:67,hp:94,power:7900,prod:"Donanma"},
   {id:"defense",name:"HAVA SAVUNMA",lv:15,x:77,y:52,hp:99,power:8600,prod:"Savunma"}
  ],
  queue:[
   ["ÇELİK FABRİKASI","Lv.18","03:42:11"],
-  ["TANK MERKEZİ","Lv.16","01:25:45"],
+  ["TANK ÜRETİM","Lv.16","01:25:45"],
   ["HAVA ÜSSÜ","Lv.15","02:19:07"]
  ]
 };
-
 function render(){
  document.getElementById("resources").innerHTML=Object.entries(state.resources).map(([k,v])=>`<div class="res">${v[0]} <b>${v[1]}</b><small>${k}</small></div>`).join("");
  document.getElementById("buildQueue").innerHTML=state.queue.map(q=>`<div class="queue"><b>${q[0]}</b><button onclick="event.stopPropagation();showToast('Hızlandırıldı')">HIZLANDIR</button><small>${q[1]} · ${q[2]}</small></div>`).join("");
@@ -38,7 +37,7 @@ function openProduction(){
  document.getElementById("modal").classList.remove("hidden");
 }
 function closeModal(){document.getElementById("modal").classList.add("hidden")}
-function showToast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("show");clearTimeout(window._tt);window._tt=setTimeout(()=>e.classList.remove("show"),1400)}
+function showToast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("show");clearTimeout(window._toastTimer);window._toastTimer=setTimeout(()=>e.classList.remove("show"),1400)}
 function toggleBuild(){document.getElementById("buildPanel").classList.toggle("open")}
-function toggleFullscreen(){if(!document.fullscreenElement){document.documentElement.requestFullscreen?.().catch(()=>{})}else{document.exitFullscreen?.()}}
+async function enterFullscreen(){try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen?.();else await document.exitFullscreen?.()}catch(e){}}
 render();

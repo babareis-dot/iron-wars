@@ -1,17 +1,13 @@
-# IRON WARS v0.2
+# IRON WARS v0.3
 
-Mobil/PC uyumlu askeri RTS arayüz prototipi.
+## Düzeltmeler
+- Oyun sabit 16:9 sahneye alındı.
+- Mobil yatay görünümde HUD taşması engellendi.
+- Dikey mod uyarısı yalnızca gerçekten dikeyken görünür.
+- Arka plan askeri üs görseli sahneyi tam doldurur.
+- Sağ menü, üst kaynaklar ve alt dock yeniden hizalandı.
+- Mobil yatayda inşaat paneli aç/kapa çalışır.
 
-## v0.2 yenilikleri
-- Mobilde yatay kullanım ekranı
-- Yatay mobilde sıkıştırılmış HUD
-- Sağ menü küçültüldü
-- Alt menü kompakt hale getirildi
-- Ana üs görseli tam ekran arka plan olarak eklendi
-- Bina hotspotları ve yükseltme sistemi
-- İnşaat paneli mobilde açılır/kapanır
-- Tam ekran desteği
-
-## GitHub güncelleme
-Repo içindeki mevcut `index.html`, `style.css`, `game.js` dosyalarını bu sürümdekilerle değiştir.
-Ayrıca `assets/iron-wars-base.png` dosyasını aynı klasör yapısıyla yükle.
+## GitHub
+Bu ZIP içindeki tüm dosyaları repo köküne yükle.
+`assets/iron-wars-base.png` yolu korunmalı.
