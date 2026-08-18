@@ -1,20 +1,17 @@
-# IRON WARS v0.1
+# IRON WARS v0.2
 
-Tarayıcı tabanlı askeri RTS prototipi.
+Mobil/PC uyumlu askeri RTS arayüz prototipi.
 
-## Çalıştırma
-- index.html dosyasını açın.
-- GitHub Pages/Vercel/Netlify gibi statik hostinglere doğrudan yüklenebilir.
-- Mobil ve PC responsive arayüz içerir.
-
-## Bu sürümde
-- Ana üs ekranı
-- Kaynak göstergeleri
-- 8 tıklanabilir bina
-- Bina seviye yükseltme
-- Üretim menüsü
-- İnşaat kuyrukları
-- Mobil/PC uyumlu askeri HUD
+## v0.2 yenilikleri
+- Mobilde yatay kullanım ekranı
+- Yatay mobilde sıkıştırılmış HUD
+- Sağ menü küçültüldü
+- Alt menü kompakt hale getirildi
+- Ana üs görseli tam ekran arka plan olarak eklendi
+- Bina hotspotları ve yükseltme sistemi
+- İnşaat paneli mobilde açılır/kapanır
 - Tam ekran desteği
 
-Not: Bu ilk sürüm statik istemci prototipidir. Gerçek online hesaplar, PvP, ittifak ve kalıcı kayıt için sonraki sürümde backend gerekir.
+## GitHub güncelleme
+Repo içindeki mevcut `index.html`, `style.css`, `game.js` dosyalarını bu sürümdekilerle değiştir.
+Ayrıca `assets/iron-wars-base.png` dosyasını aynı klasör yapısıyla yükle.
