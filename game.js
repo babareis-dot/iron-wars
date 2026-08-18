@@ -11,4 +11,74 @@ function openB(id){selected=buildings.find(b=>b.id===id);document.getElementById
 function closePanel(){document.getElementById("panel").classList.add("hidden")}
 function upgrade(){if(!selected)return;selected.level++;selected.power=Math.round(selected.power*1.12);closePanel();toast(selected.name+" Lv."+selected.level+" oldu")}
 function toast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),1300)}
-async function full(){try{if(!document.fullscreenElement)await document.documentElement.requestFullscreen?.();else await document.exitFullscreen?.()}catch(e){}}
+let orientationLocked=false;
+
+async function lockLandscape(){
+  try{
+    if(screen.orientation && screen.orientation.lock){
+      await screen.orientation.lock("landscape");
+      orientationLocked=true;
+    }
+  }catch(e){
+    orientationLocked=false;
+  }
+}
+
+function unlockOrientation(){
+  try{
+    if(screen.orientation && screen.orientation.unlock){
+      screen.orientation.unlock();
+    }
+  }catch(e){}
+  orientationLocked=false;
+}
+
+async function full(){
+  try{
+    if(!document.fullscreenElement){
+      const el=document.documentElement;
+      if(el.requestFullscreen){
+        await el.requestFullscreen({navigationUI:"hide"}).catch(async()=>{ await el.requestFullscreen(); });
+      }
+      await lockLandscape();
+      toast(orientationLocked ? "Yatay mod kilitlendi" : "Tam ekran açıldı");
+    }else{
+      if(document.exitFullscreen) await document.exitFullscreen();
+    }
+  }catch(e){
+    toast("Tam ekran açılamadı");
+  }
+}
+
+document.addEventListener("fullscreenchange", async ()=>{
+  if(document.fullscreenElement){
+    await lockLandscape();
+  }else{
+    unlockOrientation();
+  }
+});
+
+function stabilizeLayout(){
+  document.body.classList.add("orientation-changing");
+  requestAnimationFrame(()=>{
+    requestAnimationFrame(()=>{
+      document.body.classList.remove("orientation-changing");
+      window.scrollTo(0,0);
+    });
+  });
+}
+
+window.addEventListener("orientationchange", stabilizeLayout);
+window.addEventListener("resize", stabilizeLayout);
+
+document.addEventListener("visibilitychange", ()=>{
+  if(!document.hidden && document.fullscreenElement){
+    lockLandscape();
+    stabilizeLayout();
+  }
+});
+
+if(screen.orientation && screen.orientation.addEventListener){
+  screen.orientation.addEventListener("change", stabilizeLayout);
+}
+
