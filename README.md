@@ -1,16 +1,20 @@
-# IRON WARS v0.5
+# IRON WARS v0.6
 
-## Yenilikler
-- Tam ekran açılınca Android/Chromium destekliyorsa `landscape` yön kilidi ister.
-- Tam ekrandan çıkınca yön kilidini bırakır.
-- Fullscreen tekrar aktif olduğunda yatay kilidi yeniden uygular.
-- Ekran yönü/değişimi sırasında oyun sahnesi kontrollü yeniden ölçeklenir.
-- v0.4'teki temiz 16:9 üs ekranı ve bina tıklama/yükseltme sistemi korunur.
+## v0.6 yenilikleri
+- Açılışta büyük **OYUNA BAŞLA — TAM EKRAN** ekranı gelir.
+- Butona dokununca gerçek fullscreen ister.
+- Destekleyen Android/Chromium tarayıcılarda ekranı yatay moda kilitlemeye çalışır.
+- Fullscreen açılınca kullanılabilir ekran ölçüsü yeniden hesaplanır.
+- Chrome adres çubuğu/ekran değişimlerinde sahne tekrar boyutlandırılır.
+- Fullscreen'den geri tuşuyla çıkınca açılış ekranı tekrar gösterilir.
+- v0.5'teki bina dokunma/yükseltme sistemi korunur.
 
-## Not
-Tarayıcı güvenlik kuralları nedeniyle ekran yönünü zorla kilitleme her cihaz/tarayıcıda garanti değildir.
-En iyi sonuç için Chrome/Chromium tabanlı Android tarayıcıda `⛶` Tam Ekran düğmesine basın.
+## GitHub
+ZIP içindeki dosyaların tamamını mevcut repo dosyalarının üzerine yükleyin:
+- index.html
+- style.css
+- game.js
+- README.md
+- assets/iron-wars-base.png
 
-## GitHub güncelleme
-ZIP içindeki `index.html`, `style.css`, `game.js`, `README.md` dosyalarını mevcut dosyaların üzerine yükleyin.
-`assets/iron-wars-base.png` değişmedi, ama ZIP içinde yine bulunmaktadır.
+Pages zaten açıksa yeniden Pages ayarı yapmanız gerekmez.

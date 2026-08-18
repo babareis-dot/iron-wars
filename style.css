@@ -6,3 +6,82 @@ body.orientation-changing #game{visibility:hidden}
   #game{display:block!important}
   #rotate{display:none!important}
 }
+
+
+/* ===== v0.6 start/fullscreen experience ===== */
+#startOverlay{
+  position:fixed;
+  inset:0;
+  z-index:5000;
+  display:grid;
+  place-items:center;
+  background:
+    radial-gradient(circle at 50% 32%,rgba(31,55,63,.96),rgba(4,10,14,.99) 68%),
+    #061015;
+  padding:20px;
+}
+#startOverlay.hidden{display:none!important}
+.startCard{
+  width:min(520px,92vw);
+  text-align:center;
+  padding:28px 22px;
+  border:1px solid #6f8088;
+  background:linear-gradient(180deg,rgba(15,27,33,.97),rgba(6,13,17,.98));
+  box-shadow:0 20px 70px #000a,inset 0 0 0 1px #0008;
+}
+.startLogo{
+  font-size:clamp(24px,5vw,42px);
+  font-weight:800;
+  letter-spacing:.08em;
+}
+.startCard h1{
+  margin:6px 0 14px;
+  font-size:clamp(13px,2.8vw,20px);
+  color:#aab9c0;
+  letter-spacing:.22em;
+}
+.startCard p{
+  color:#c8d2d7;
+  font-size:clamp(13px,3vw,17px);
+  line-height:1.45;
+  margin:0 auto 18px;
+  max-width:420px;
+}
+.startCard button{
+  width:100%;
+  padding:15px 14px;
+  border:1px solid #d3b150;
+  background:linear-gradient(#735f22,#3d3216);
+  color:#ffe59a;
+  font-weight:800;
+  letter-spacing:.04em;
+  font-size:clamp(14px,3.2vw,19px);
+}
+.startCard small{
+  display:block;
+  margin-top:12px;
+  color:#8ea0a9;
+  font-size:11px;
+}
+.fs{
+  opacity:.82!important;
+  z-index:30!important;
+  background:rgba(4,10,14,.74)!important;
+  border:1px solid #73838b!important;
+  border-radius:4px;
+  font-size:1.5vw;
+}
+body:not(.game-started) #game{filter:blur(2px) brightness(.45)}
+body.game-started #game{filter:none}
+html,body{
+  width:100%;
+  height:100%;
+  min-height:100%;
+}
+#game{
+  width:100dvw;
+  height:100dvh;
+}
+@supports not (height:100dvh){
+  #game{width:100vw;height:100vh}
+}

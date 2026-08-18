@@ -82,3 +82,94 @@ if(screen.orientation && screen.orientation.addEventListener){
   screen.orientation.addEventListener("change", stabilizeLayout);
 }
 
+
+
+let gameStarted = false;
+
+async function requestRealFullscreen(){
+  const el = document.documentElement;
+  if(document.fullscreenElement) return true;
+  try{
+    if(el.requestFullscreen){
+      try{
+        await el.requestFullscreen({navigationUI:"hide"});
+      }catch(e){
+        await el.requestFullscreen();
+      }
+      return !!document.fullscreenElement;
+    }
+  }catch(e){}
+  return false;
+}
+
+async function requestLandscapeLock(){
+  try{
+    if(screen.orientation && screen.orientation.lock){
+      await screen.orientation.lock("landscape");
+      orientationLocked = true;
+      return true;
+    }
+  }catch(e){}
+  orientationLocked = false;
+  return false;
+}
+
+function fitGameToViewport(){
+  const game = document.getElementById("game");
+  if(!game) return;
+  const vv = window.visualViewport;
+  const w = vv ? vv.width : window.innerWidth;
+  const h = vv ? vv.height : window.innerHeight;
+  game.style.width = w + "px";
+  game.style.height = h + "px";
+  game.style.left = "0px";
+  game.style.top = "0px";
+  window.scrollTo(0,0);
+}
+
+async function startGame(){
+  const btn = document.getElementById("startGameBtn");
+  if(btn){
+    btn.disabled = true;
+    btn.textContent = "AÇILIYOR...";
+  }
+
+  await requestRealFullscreen();
+  await requestLandscapeLock();
+
+  gameStarted = true;
+  document.body.classList.add("game-started");
+  document.getElementById("startOverlay")?.classList.add("hidden");
+
+  setTimeout(fitGameToViewport, 80);
+  setTimeout(fitGameToViewport, 300);
+}
+
+document.addEventListener("fullscreenchange", async ()=>{
+  if(document.fullscreenElement){
+    if(gameStarted){
+      await requestLandscapeLock();
+      setTimeout(fitGameToViewport, 60);
+    }
+  }else{
+    if(gameStarted){
+      unlockOrientation();
+      gameStarted = false;
+      document.body.classList.remove("game-started");
+      document.getElementById("startOverlay")?.classList.remove("hidden");
+      const btn = document.getElementById("startGameBtn");
+      if(btn){
+        btn.disabled = false;
+        btn.textContent = "OYUNA BAŞLA — TAM EKRAN";
+      }
+    }
+  }
+});
+
+if(window.visualViewport){
+  visualViewport.addEventListener("resize", fitGameToViewport);
+}
+window.addEventListener("resize", fitGameToViewport);
+window.addEventListener("orientationchange", ()=>setTimeout(fitGameToViewport,120));
+
+document.addEventListener("DOMContentLoaded", fitGameToViewport);
