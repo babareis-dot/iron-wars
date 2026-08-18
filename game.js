@@ -173,3 +173,56 @@ window.addEventListener("resize", fitGameToViewport);
 window.addEventListener("orientationchange", ()=>setTimeout(fitGameToViewport,120));
 
 document.addEventListener("DOMContentLoaded", fitGameToViewport);
+
+
+/* v0.7 ambient animation setup */
+function createSmoke(){
+  const emitters = document.querySelectorAll(".smoke-emitter");
+  emitters.forEach((emitter, emitterIndex)=>{
+    const count = emitterIndex === 0 ? 8 : emitterIndex === 1 ? 6 : 4;
+    for(let i=0;i<count;i++){
+      const puff=document.createElement("i");
+      puff.className="smoke-puff";
+      const dur=(5.4 + (i%4)*.65 + emitterIndex*.45).toFixed(2)+"s";
+      const delay=(-i*(5.8/count)).toFixed(2)+"s";
+      const drift=((i%2===0?1:-1)*(7+i*2))+"px";
+      const drift2=((i%3===0?-1:1)*(18+i*2))+"px";
+      puff.style.setProperty("--dur",dur);
+      puff.style.setProperty("--delay",delay);
+      puff.style.setProperty("--drift",drift);
+      puff.style.setProperty("--drift2",drift2);
+      emitter.appendChild(puff);
+    }
+  });
+}
+document.addEventListener("DOMContentLoaded",createSmoke);
+
+/* v0.8 — no forced fullscreen. URL/browser controls intentionally remain visible. */
+gameStarted=true;
+document.body.classList.add("game-started");
+
+function fitV8(){
+ const game=document.getElementById("game");
+ if(!game)return;
+ const vv=window.visualViewport;
+ const W=vv?vv.width:window.innerWidth, H=vv?vv.height:window.innerHeight;
+ const ratio=16/9;
+ let w=W,h=w/ratio;
+ if(h>H){h=H;w=h*ratio}
+ game.style.width=w+"px";game.style.height=h+"px";
+}
+window.addEventListener("resize",fitV8);
+window.addEventListener("orientationchange",()=>setTimeout(fitV8,100));
+if(window.visualViewport) visualViewport.addEventListener("resize",fitV8);
+document.addEventListener("DOMContentLoaded",()=>{
+ fitV8();
+ const fx=document.getElementById("fxStage");
+ if(fx){
+   [[48,31,6],[39,61,4],[68,53,4],[79,67,3]].forEach((a,i)=>{
+     const e=document.createElement("i");e.className="ambient-glow";
+     e.style.left=a[0]+"%";e.style.top=a[1]+"%";
+     e.style.width=a[2]+"%";e.style.aspectRatio="1";
+     e.style.animationDelay=(i*.65)+"s";fx.appendChild(e);
+   });
+ }
+});

@@ -85,3 +85,218 @@ html,body{
 @supports not (height:100dvh){
   #game{width:100vw;height:100vh}
 }
+
+
+/* =========================================================
+   IRON WARS v0.7 — animated base ambience
+   All effects use transform/opacity for mobile performance.
+   ========================================================= */
+
+#fxStage{
+  position:absolute;
+  z-index:3;
+  pointer-events:none;
+  overflow:hidden;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
+}
+
+/* Match the 1536x1024 (3:2) background image's object-fit:cover. */
+@media (min-aspect-ratio:3/2){
+  #fxStage{
+    width:100vw;
+    height:66.6666667vw;
+  }
+}
+@media (max-aspect-ratio:3/2){
+  #fxStage{
+    width:150vh;
+    height:100vh;
+  }
+}
+
+.smoke-emitter{
+  position:absolute;
+  width:1px;
+  height:1px;
+}
+.smoke-steel{left:26.4%;top:59.5%}
+.smoke-research{left:29.1%;top:31.2%}
+.smoke-command{left:49.4%;top:20.2%}
+
+.smoke-puff{
+  position:absolute;
+  left:0;
+  top:0;
+  width:2.1vw;
+  height:2.1vw;
+  min-width:13px;
+  min-height:13px;
+  border-radius:50%;
+  background:radial-gradient(circle at 44% 44%,
+    rgba(225,231,231,.64) 0 13%,
+    rgba(186,197,197,.45) 30%,
+    rgba(105,116,118,.22) 56%,
+    rgba(55,65,68,0) 75%);
+  filter:blur(.18vw);
+  opacity:0;
+  will-change:transform,opacity;
+  animation:smokeRise var(--dur,6s) linear infinite;
+  animation-delay:var(--delay,0s);
+}
+.smoke-research .smoke-puff{
+  width:1.55vw;height:1.55vw;
+  filter:blur(.14vw);
+  opacity:.6;
+}
+.smoke-command .smoke-puff{
+  width:1.1vw;height:1.1vw;
+  opacity:.42;
+}
+
+@keyframes smokeRise{
+  0%{opacity:0;transform:translate(-50%,0) scale(.45)}
+  10%{opacity:.52}
+  48%{opacity:.40;transform:translate(calc(-50% + var(--drift,10px)),-3.8vw) scale(1.12)}
+  78%{opacity:.20}
+  100%{opacity:0;transform:translate(calc(-50% + var(--drift2,22px)),-7.4vw) scale(1.75)}
+}
+
+.warning-light{
+  position:absolute;
+  width:.42vw;
+  height:.42vw;
+  min-width:3px;
+  min-height:3px;
+  border-radius:50%;
+  background:#ff792f;
+  box-shadow:0 0 .35vw #ff6a25,0 0 .8vw #ff4b16;
+  animation:warningPulse 1.45s ease-in-out infinite;
+}
+.command-red{left:50.05%;top:17.7%;background:#ff2d25;box-shadow:0 0 .4vw #ff2d25,0 0 1vw #ff2d25;animation-duration:1.05s}
+.command-amber{left:49.2%;top:29.8%;animation-delay:.45s}
+.research-light{left:28.8%;top:40.2%;animation-delay:.15s}
+.steel-light{left:27.0%;top:66.9%;animation-delay:.7s}
+.dock-light{left:75.3%;top:58.4%;animation-delay:.25s}
+@keyframes warningPulse{
+  0%,100%{opacity:.18;transform:scale(.65)}
+  45%{opacity:1;transform:scale(1.18)}
+  60%{opacity:.82;transform:scale(.92)}
+}
+
+.runway-lights{
+  position:absolute;
+  left:67.3%;
+  top:37.5%;
+  width:16.7%;
+  height:3.2%;
+  transform:rotate(3deg);
+}
+.runway-lights i{
+  position:absolute;
+  top:48%;
+  width:.27vw;
+  height:.27vw;
+  min-width:2px;
+  min-height:2px;
+  border-radius:50%;
+  background:#d7f5ff;
+  box-shadow:0 0 .28vw #9ce5ff,0 0 .55vw #6ccfff;
+  animation:runwayChase 2s linear infinite;
+  opacity:.2;
+}
+.runway-lights i:nth-child(1){left:0%;animation-delay:0s}
+.runway-lights i:nth-child(2){left:14%;animation-delay:.18s}
+.runway-lights i:nth-child(3){left:28%;animation-delay:.36s}
+.runway-lights i:nth-child(4){left:42%;animation-delay:.54s}
+.runway-lights i:nth-child(5){left:56%;animation-delay:.72s}
+.runway-lights i:nth-child(6){left:70%;animation-delay:.90s}
+.runway-lights i:nth-child(7){left:84%;animation-delay:1.08s}
+.runway-lights i:nth-child(8){left:98%;animation-delay:1.26s}
+@keyframes runwayChase{
+  0%,38%,100%{opacity:.16;transform:scale(.7)}
+  48%{opacity:1;transform:scale(1.35)}
+  58%{opacity:.34;transform:scale(.85)}
+}
+
+.water-shimmer{
+  position:absolute;
+  height:.26vw;
+  min-height:2px;
+  border-radius:50%;
+  background:linear-gradient(90deg,transparent,rgba(180,238,255,.12),rgba(230,250,255,.7),rgba(156,229,255,.13),transparent);
+  filter:blur(.06vw);
+  opacity:.15;
+  animation:waterGlint 4.5s ease-in-out infinite;
+}
+.shimmer-a{left:82%;top:62%;width:13%;transform:rotate(-13deg)}
+.shimmer-b{left:78%;top:72%;width:18%;transform:rotate(-8deg);animation-delay:1.3s}
+.shimmer-c{left:86%;top:49%;width:10%;transform:rotate(-17deg);animation-delay:2.2s}
+@keyframes waterGlint{
+  0%,100%{opacity:.05;filter:blur(.08vw);translate:-1vw 0}
+  45%{opacity:.65;filter:blur(.03vw);translate:1.7vw 0}
+  65%{opacity:.23}
+}
+
+.service-vehicle{
+  position:absolute;
+  font-size:.62vw;
+  color:#b8a268;
+  text-shadow:0 0 .3vw #000;
+  opacity:.75;
+  will-change:transform;
+}
+.vehicle-one{
+  left:40%;
+  top:57%;
+  animation:vehicleRouteOne 13s linear infinite;
+}
+.vehicle-two{
+  left:60%;
+  top:47%;
+  color:#8d9b79;
+  animation:vehicleRouteTwo 17s linear infinite;
+  animation-delay:-6s;
+}
+@keyframes vehicleRouteOne{
+  0%{transform:translate(0,0) rotate(-4deg);opacity:0}
+  5%{opacity:.8}
+  45%{transform:translate(11vw,-1.7vw) rotate(-4deg)}
+  55%{transform:translate(13vw,-1.7vw) rotate(7deg)}
+  95%{opacity:.75}
+  100%{transform:translate(22vw,1.1vw) rotate(7deg);opacity:0}
+}
+@keyframes vehicleRouteTwo{
+  0%{transform:translate(0,0) rotate(178deg);opacity:0}
+  8%{opacity:.7}
+  48%{transform:translate(-9vw,1.4vw) rotate(178deg)}
+  100%{transform:translate(-18vw,3.2vw) rotate(171deg);opacity:0}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .smoke-puff,.warning-light,.runway-lights i,.water-shimmer,.service-vehicle{
+    animation:none!important;
+  }
+}
+
+/* v0.8 — browser-bar mode: whole 16:9 battlefield always visible */
+html,body{margin:0;width:100%;height:100%;overflow:hidden;background:#020608}
+body{display:flex;align-items:center;justify-content:center}
+#game{
+ position:relative!important; inset:auto!important;
+ width:min(100vw,calc(100vh * 16 / 9))!important;
+ height:min(100vh,calc(100vw * 9 / 16))!important;
+ aspect-ratio:16/9;
+ overflow:hidden;background:#020608;
+}
+.base{width:100%!important;height:100%!important;object-fit:fill!important}
+#fxStage{width:100%!important;height:100%!important;left:0!important;top:0!important;transform:none!important}
+#rotate{display:none!important}
+body.orientation-changing #game{visibility:visible!important}
+
+/* v8 extra subtle life */
+.ambient-glow{position:absolute;border-radius:50%;pointer-events:none;
+ background:radial-gradient(circle,rgba(255,190,75,.24),rgba(255,160,30,0) 70%);
+ animation:ambientPulse 3.2s ease-in-out infinite}
+@keyframes ambientPulse{0%,100%{opacity:.25;transform:scale(.82)}50%{opacity:.75;transform:scale(1.12)}}
