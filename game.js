@@ -127,3 +127,15 @@ document.addEventListener("DOMContentLoaded",()=>{
  setupSmoke();
  fitToViewport();
 });
+
+
+/* v13 viewport stability */
+function refitManyTimesV13(){
+  [0,50,120,240,450,800].forEach(ms=>setTimeout(fitToViewport,ms));
+}
+document.addEventListener("fullscreenchange", refitManyTimesV13);
+window.addEventListener("orientationchange", refitManyTimesV13);
+window.addEventListener("resize", refitManyTimesV13);
+if(window.visualViewport){
+  visualViewport.addEventListener("resize", refitManyTimesV13);
+}

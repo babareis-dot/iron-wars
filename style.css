@@ -198,3 +198,95 @@ html,body{
   -webkit-user-select:none!important;
   -webkit-user-drag:none!important;
 }
+
+
+/* =========================================================
+   IRON WARS v13 — fill side gaps without cropping UI
+   Main composition remains fully visible.
+   ========================================================= */
+
+#game{
+  position:fixed!important;
+  inset:0!important;
+  width:100dvw!important;
+  height:100dvh!important;
+  overflow:hidden!important;
+  background:#081017!important;
+}
+
+/* Full-screen living backdrop behind the contained game frame */
+#ambientFill{
+  position:absolute!important;
+  inset:-8%!important;
+  width:116%!important;
+  height:116%!important;
+  z-index:0!important;
+  background-image:url("assets/iron-wars-base.jpg")!important;
+  background-repeat:no-repeat!important;
+  background-position:center center!important;
+  background-size:cover!important;
+  filter:blur(22px) brightness(.48) saturate(.9)!important;
+  transform:scale(1.10)!important;
+}
+
+/* Add a soft dark military tint instead of black bars */
+#game::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:.5;
+  pointer-events:none;
+  background:
+    linear-gradient(90deg,
+      rgba(5,12,17,.30) 0%,
+      rgba(5,12,17,.08) 17%,
+      rgba(5,12,17,0) 30%,
+      rgba(5,12,17,0) 70%,
+      rgba(5,12,17,.08) 83%,
+      rgba(5,12,17,.30) 100%);
+}
+
+/* Keep the real game layer completely intact */
+#designStage{
+  z-index:2!important;
+  box-shadow:0 0 38px rgba(0,0,0,.55)!important;
+}
+
+/* Subtle edge continuation panels for very wide phones */
+#game::after{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:1;
+  pointer-events:none;
+  background:
+    radial-gradient(ellipse at left center, rgba(38,67,72,.18), transparent 35%),
+    radial-gradient(ellipse at right center, rgba(27,57,70,.22), transparent 38%);
+  mix-blend-mode:screen;
+  opacity:.38;
+}
+
+/* Main source image is never cropped */
+#baseImage{
+  object-fit:contain!important;
+  object-position:center center!important;
+  transform:none!important;
+  animation:cameraBreathV13 26s ease-in-out infinite alternate!important;
+}
+
+@keyframes cameraBreathV13{
+  from{transform:scale(1)}
+  to{transform:scale(1.0025)}
+}
+
+/* Fullscreen control stays inside the actual composition */
+#fullscreenButton{
+  right:2.2%!important;
+  top:1.6%!important;
+  z-index:90!important;
+}
+
+/* Make sure browser resizing does not reveal plain black background */
+html,body{
+  background:#081017!important;
+}
