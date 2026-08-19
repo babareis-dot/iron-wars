@@ -1,13 +1,18 @@
-# IRON WARS v13
+# IRON WARS v14
 
-## v13 düzeltmesi
-- Ana oyun ekranı kırpılmadan TAM görünür kalır.
-- Sağ ve soldaki siyah boşluklar kaldırıldı.
-- Boş alanlar aynı üs görselinin bulanık/karartılmış devamıyla doldurulur.
-- Ana görsel büyütülmez; Commander, kaynaklar, sol panel, sağ panel, Dünya ve alt menü kesilmez.
-- Çok geniş telefon ekranlarında kenarlar doğal askeri arka plan devamı gibi görünür.
-- Fullscreen ve yön değişimlerinde sahne birkaç kez yeniden ölçülür.
-- v12 canlı üs efektleri korunur.
+## v14 ana düzeltme
+- Ortadaki oyun ekranı artık kesinlikle kırpılmaz.
+- Kullanıcının onayladığı görüntüdeki sadece siyah yan barlar kaynak görselden çıkarıldı.
+- Oyun kompozisyonu `1191x674` olarak korunur.
+- Ekran oranı farklı olduğunda kalan alanlar siyah bırakılmaz.
+- Sağ/sol boşluklarda aynı üs/deniz/dağ görüntüsünün bulanık ve doğal devamı kullanılır.
+- Commander, kaynaklar, sol menü, sağ menü, Dünya ve alt menü aynı anda görünür kalır.
+- Fullscreen ve yatay kilit mantığı korunur.
+- Hafif duman/ışık/su/araç efektleri korunur.
 
 ## GitHub
-ZIP içindeki tüm dosyaları mevcut dosyaların üzerine yükleyin.
+ZIP içindeki tüm dosyaları mevcut repo dosyalarının üzerine yükleyin.
+
+Yeni görseller:
+- `assets/iron-wars-base-v14.jpg`
+- `assets/iron-wars-fill-v14.jpg`

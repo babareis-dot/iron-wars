@@ -201,92 +201,79 @@ html,body{
 
 
 /* =========================================================
-   IRON WARS v13 — fill side gaps without cropping UI
-   Main composition remains fully visible.
+   IRON WARS v14 — PRESERVE CENTER, FILL SIDE GAPS
+   Cropped source size: 1191x674
    ========================================================= */
+
+html,body{
+  margin:0!important;
+  width:100%!important;
+  height:100%!important;
+  overflow:hidden!important;
+  background:#020608!important;
+}
 
 #game{
   position:fixed!important;
   inset:0!important;
+  width:100vw!important;
+  height:100vh!important;
   width:100dvw!important;
   height:100dvh!important;
   overflow:hidden!important;
-  background:#081017!important;
+  background:#020608!important;
 }
 
-/* Full-screen living backdrop behind the contained game frame */
+/* Fill only the unused sides/top-bottom with the same base atmosphere. */
 #ambientFill{
   position:absolute!important;
-  inset:-8%!important;
-  width:116%!important;
-  height:116%!important;
+  inset:-6%!important;
+  background:
+    linear-gradient(rgba(2,7,10,.20),rgba(2,7,10,.20)),
+    url("assets/iron-wars-fill-v14.jpg") center center/cover no-repeat!important;
+  filter:blur(18px) brightness(.72) saturate(.92)!important;
+  transform:scale(1.08)!important;
   z-index:0!important;
-  background-image:url("assets/iron-wars-base.jpg")!important;
-  background-repeat:no-repeat!important;
-  background-position:center center!important;
-  background-size:cover!important;
-  filter:blur(22px) brightness(.48) saturate(.9)!important;
-  transform:scale(1.10)!important;
 }
 
-/* Add a soft dark military tint instead of black bars */
-#game::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:.5;
-  pointer-events:none;
-  background:
-    linear-gradient(90deg,
-      rgba(5,12,17,.30) 0%,
-      rgba(5,12,17,.08) 17%,
-      rgba(5,12,17,0) 30%,
-      rgba(5,12,17,0) 70%,
-      rgba(5,12,17,.08) 83%,
-      rgba(5,12,17,.30) 100%);
-}
-
-/* Keep the real game layer completely intact */
+/* Exact original content area. Never crop it. */
 #designStage{
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  width:1191px!important;
+  height:674px!important;
+  transform-origin:center center!important;
+  overflow:hidden!important;
   z-index:2!important;
-  box-shadow:0 0 38px rgba(0,0,0,.55)!important;
+  box-shadow:0 0 30px rgba(0,0,0,.35);
 }
 
-/* Subtle edge continuation panels for very wide phones */
-#game::after{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:1;
-  pointer-events:none;
-  background:
-    radial-gradient(ellipse at left center, rgba(38,67,72,.18), transparent 35%),
-    radial-gradient(ellipse at right center, rgba(27,57,70,.22), transparent 38%);
-  mix-blend-mode:screen;
-  opacity:.38;
-}
-
-/* Main source image is never cropped */
 #baseImage{
-  object-fit:contain!important;
-  object-position:center center!important;
-  transform:none!important;
-  animation:cameraBreathV13 26s ease-in-out infinite alternate!important;
+  position:absolute!important;
+  inset:0!important;
+  width:1191px!important;
+  height:674px!important;
+  object-fit:fill!important;
+  object-position:center!important;
+  animation:cameraBreathV14 26s ease-in-out infinite alternate!important;
 }
 
-@keyframes cameraBreathV13{
+@keyframes cameraBreathV14{
   from{transform:scale(1)}
-  to{transform:scale(1.0025)}
+  to{transform:scale(1.003)}
 }
 
-/* Fullscreen control stays inside the actual composition */
+#fxStage,#zones{
+  width:1191px!important;
+  height:674px!important;
+  left:0!important;
+  top:0!important;
+  right:auto!important;
+  bottom:auto!important;
+}
+
+/* Keep the fullscreen control visible without affecting layout. */
 #fullscreenButton{
-  right:2.2%!important;
-  top:1.6%!important;
   z-index:90!important;
-}
-
-/* Make sure browser resizing does not reveal plain black background */
-html,body{
-  background:#081017!important;
 }
