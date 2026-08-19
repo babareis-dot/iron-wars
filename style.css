@@ -144,3 +144,57 @@ html,body{
   #portraitWarning{display:grid!important}
   #game{display:none!important}
 }
+
+
+/* =========================================================
+   IRON WARS v12 — TRUE FULL COMPOSITION FIT
+   No crop: top resources + bottom navigation remain visible.
+   ========================================================= */
+#game{
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+}
+#ambientFill{
+  position:absolute!important;
+  inset:-30px!important;
+  background:url("assets/iron-wars-base.jpg") center/cover no-repeat!important;
+  filter:blur(22px) brightness(.42)!important;
+  transform:scale(1.08)!important;
+}
+#designStage{
+  position:absolute!important;
+  left:50%!important;
+  top:50%!important;
+  width:1536px!important;
+  height:674px!important;
+  transform-origin:center center!important;
+  overflow:hidden!important;
+}
+#baseImage{
+  width:1536px!important;
+  height:674px!important;
+  object-fit:contain!important;
+  object-position:center!important;
+}
+/* Keep FX and hit zones locked to the exact same design coordinate system */
+#fxStage,#zones{
+  width:1536px!important;
+  height:674px!important;
+  left:0!important;
+  top:0!important;
+  right:auto!important;
+  bottom:auto!important;
+}
+/* fullscreen control sits above the artwork and never becomes a navigation link */
+#fullscreenButton{
+  z-index:80!important;
+  pointer-events:auto!important;
+}
+/* prevent accidental image dragging / page gestures */
+#designStage,#baseImage{
+  touch-action:none!important;
+  user-select:none!important;
+  -webkit-user-select:none!important;
+  -webkit-user-drag:none!important;
+}

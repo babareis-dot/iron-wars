@@ -91,21 +91,24 @@ async function toggleFullscreen(ev){
 
 function fitToViewport(){
  const vv=window.visualViewport;
- const vw=vv?vv.width:window.innerWidth;
- const vh=vv?vv.height:window.innerHeight;
+ const vw=Math.max(1, vv ? vv.width : window.innerWidth);
+ const vh=Math.max(1, vv ? vv.height : window.innerHeight);
  const game=document.getElementById("game");
  const stage=document.getElementById("designStage");
  if(game){
    game.style.width=vw+"px";
    game.style.height=vh+"px";
-   game.style.left="0px";
-   game.style.top="0px";
  }
  if(stage){
-   const DESIGN_W=1536, DESIGN_H=674;
-   const scale=Math.min(vw/DESIGN_W, vh/DESIGN_H);
+   const DW=1536, DH=674;
+   // TRUE contain: never crop a single pixel of the designed interface.
+   const scale=Math.min(vw/DW, vh/DH);
+   stage.style.left=(vw/2)+"px";
+   stage.style.top=(vh/2)+"px";
    stage.style.transform="translate(-50%,-50%) scale("+scale+")";
  }
+ document.documentElement.style.width=vw+"px";
+ document.documentElement.style.height=vh+"px";
  window.scrollTo(0,0);
 }
 
@@ -113,7 +116,7 @@ document.addEventListener("fullscreenchange",()=>{
  if(!document.fullscreenElement){
    try{screen.orientation?.unlock?.();}catch(e){}
  }
- setTimeout(fitToViewport,60);
+ [0,60,160,350,700].forEach(ms=>setTimeout(fitToViewport,ms));
 });
 window.addEventListener("resize",fitToViewport);
 window.addEventListener("orientationchange",()=>setTimeout(fitToViewport,120));

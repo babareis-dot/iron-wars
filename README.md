@@ -1,24 +1,20 @@
-# IRON WARS v11
+# IRON WARS v12
 
-## Tam ekran düzeltmesi
-v11'de tam ekran sistemi yeniden düzenlendi.
+## Ana düzeltme
+v10/v11'de kullanılan kırpılmış üs resmi kaldırıldı. v12 tekrar TAM 1536×674 kompozisyonu kullanır.
 
-- Oyun arayüzünün tamamı 1536×674 tasarım yüzeyi olarak korunur.
-- Fullscreen açıldığında ekran oranı ne olursa olsun bütün tasarım görünür kalır.
-- `cover` ile UI kırpılması kaldırıldı.
-- Komutan, kaynaklar, sağ menü, alt menü ve Dünya aynı anda ekranda kalır.
-- Ekran oranından kalan küçük alanlar siyah olmak yerine aynı üs görselinin bulanık devamıyla doldurulur.
-- Android tarayıcı çubukları değiştiğinde ölçek birkaç kez yeniden hesaplanır.
+Tam ekranda:
+- Commander bölümü görünür.
+- Para/Petrol/Çelik/Bakır/Altın kaynak çubuğu görünür.
+- Sol inşaat paneli görünür.
+- Sağ Etkinlik/Paketler/Sıralama/İttifak/Posta menüsü görünür.
+- Dünya butonu görünür.
+- Alt Üsler/Binalar/Üretim/Birlikler/İttifak/Envanter/Mağaza çubuğu görünür.
+- Ana görüntü hiçbir kenardan kırpılmaz.
+- Telefon oranı farklıysa kalan alan siyah değil, bulanık üs arka planıyla doldurulur.
+- Fullscreen sırasında Android tarayıcı alanı değiştikçe ölçek tekrar hesaplanır.
 - Fullscreen butonu URL yönlendirmesi yapmaz.
-- Destekleyen Android tarayıcılarda yatay yön kilidi denenir.
-- v10'daki hafif canlı üs efektleri korunur.
+- Hafif canlı üs efektleri korunur.
 
 ## GitHub
-ZIP içindeki TÜM dosyaları mevcut dosyaların üzerine yükleyin:
-- index.html
-- style.css
-- game.js
-- README.md
-- assets/iron-wars-base.jpg
-
-Eski `iron-wars-base.png` artık kullanılmıyor.
+ZIP içindeki tüm dosyaları mevcut repo dosyalarının üzerine yükleyin.
