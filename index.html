@@ -1,37 +1,70 @@
-<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="theme-color" content="#020608"><title>IRON WARS v0.4</title><link rel="stylesheet" href="style.css"></head><body>
-<div id="startOverlay">
-  <div class="startCard">
-    <div class="startLogo">✠ IRON WARS</div>
-    <h1>GLOBAL CONFLICT</h1>
-    <p>En iyi görünüm için oyunu tam ekranda ve yatay modda başlat.</p>
-    <button id="startGameBtn" onclick="startGame()">OYUNA BAŞLA — TAM EKRAN</button>
-    <small>Geri tuşuna basınca tam ekrandan çıkabilirsin.</small>
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
+<meta name="theme-color" content="#020608">
+<title>IRON WARS v10</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div id="portraitWarning">
+  <div>
+    <div class="rotateIcon">📱↻</div>
+    <h1>IRON WARS</h1>
+    <p>Telefonu yatay çevir.</p>
   </div>
 </div>
 
-<div id="rotate"><div><div class="ico">📱↻</div><h1>IRON WARS</h1><p>Telefonu yatay çevir.</p></div></div>
-<div id="game"><img class="base" src="assets/iron-wars-base.png" alt="">
-<div id="fxStage" aria-hidden="true">
-  <div class="smoke-emitter smoke-steel"></div>
-  <div class="smoke-emitter smoke-research"></div>
-  <div class="smoke-emitter smoke-command"></div>
+<div id="game">
+  <img id="baseImage" src="assets/iron-wars-base.jpg" alt="IRON WARS">
 
-  <i class="warning-light command-red"></i>
-  <i class="warning-light command-amber"></i>
-  <i class="warning-light research-light"></i>
-  <i class="warning-light steel-light"></i>
-  <i class="warning-light dock-light"></i>
+  <div id="fxStage" aria-hidden="true">
+    <div class="smoke-emitter smoke-steel"></div>
+    <div class="smoke-emitter smoke-research"></div>
+    <div class="smoke-emitter smoke-command"></div>
 
-  <div class="runway-lights">
-    <i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    <i class="warning-light l1"></i>
+    <i class="warning-light l2"></i>
+    <i class="warning-light l3"></i>
+    <i class="warning-light l4"></i>
+
+    <div class="runway-lights">
+      <i></i><i></i><i></i><i></i><i></i><i></i><i></i>
+    </div>
+
+    <div class="water-shimmer s1"></div>
+    <div class="water-shimmer s2"></div>
+    <div class="water-shimmer s3"></div>
+
+    <div class="vehicle vehicle1"></div>
+    <div class="vehicle vehicle2"></div>
+    <div class="heli-shadow"></div>
   </div>
 
-  <div class="water-shimmer shimmer-a"></div>
-  <div class="water-shimmer shimmer-b"></div>
-  <div class="water-shimmer shimmer-c"></div>
+  <!-- real fullscreen hit area over the visual icon -->
+  <button id="fullscreenButton" aria-label="Tam ekran" onclick="toggleFullscreen(event)">⛶</button>
 
-  <div class="service-vehicle vehicle-one">▰</div>
-  <div class="service-vehicle vehicle-two">▰</div>
-</div><div id="tapzones"></div><button class="fs" id="fullscreenBtn" onclick="full()">⛶</button><div id="toast"></div></div>
-<div id="panel" class="hidden"><div class="card"><button class="x" onclick="closePanel()">✕</button><h2 id="title"></h2><p id="desc"></p><div class="stats"><b id="level"></b><b id="power"></b><b id="status"></b></div><button class="upgrade" onclick="upgrade()">SEVİYE YÜKSELT</button></div></div>
-<script src="game.js"></script></body></html>
+  <div id="toast"></div>
+</div>
+
+<div id="buildingPanel" class="hidden">
+  <div class="panelCard">
+    <button class="closeBtn" onclick="closePanel()">✕</button>
+    <h2 id="panelTitle"></h2>
+    <p id="panelText"></p>
+    <div class="panelStats">
+      <div><b id="statLevel"></b><span>SEVİYE</span></div>
+      <div><b id="statPower"></b><span>GÜÇ</span></div>
+      <div><b id="statState"></b><span>DURUM</span></div>
+    </div>
+    <button class="upgradeBtn" onclick="upgradeSelected()">SEVİYE YÜKSELT</button>
+  </div>
+</div>
+
+<div id="zones"></div>
+
+<script src="game.js"></script>
+</body>
+</html>
