@@ -10,6 +10,8 @@ let selected=null;
 
 function setupZones(){
  const root=document.getElementById("zones");
+ const stage=document.getElementById("designStage");
+ if(root && stage && root.parentElement!==stage) stage.appendChild(root);
  buildings.forEach(b=>{
    const z=document.createElement("button");
    z.className="zone";
@@ -73,6 +75,9 @@ async function toggleFullscreen(ev){
        }
      }catch(e){}
      fitToViewport();
+     setTimeout(fitToViewport,80);
+     setTimeout(fitToViewport,260);
+     setTimeout(fitToViewport,650);
      toast(document.fullscreenElement?"Tam ekran açıldı":"Tam ekran desteklenmedi");
    }else{
      if(document.exitFullscreen) await document.exitFullscreen();
@@ -86,14 +91,20 @@ async function toggleFullscreen(ev){
 
 function fitToViewport(){
  const vv=window.visualViewport;
- const w=vv?vv.width:window.innerWidth;
- const h=vv?vv.height:window.innerHeight;
+ const vw=vv?vv.width:window.innerWidth;
+ const vh=vv?vv.height:window.innerHeight;
  const game=document.getElementById("game");
+ const stage=document.getElementById("designStage");
  if(game){
-   game.style.width=w+"px";
-   game.style.height=h+"px";
+   game.style.width=vw+"px";
+   game.style.height=vh+"px";
    game.style.left="0px";
    game.style.top="0px";
+ }
+ if(stage){
+   const DESIGN_W=1536, DESIGN_H=674;
+   const scale=Math.min(vw/DESIGN_W, vh/DESIGN_H);
+   stage.style.transform="translate(-50%,-50%) scale("+scale+")";
  }
  window.scrollTo(0,0);
 }

@@ -1,23 +1,24 @@
-# IRON WARS v10
+# IRON WARS v11
 
-Bu sürüm özellikle mobil tam ekran ve siyah kenar sorunlarını düzeltmek için sıfırdan temizlendi.
+## Tam ekran düzeltmesi
+v11'de tam ekran sistemi yeniden düzenlendi.
 
-- Kullanıcının onayladığı üs görselindeki siyah yan barlar otomatik kırpıldı.
-- Oyun `100dvw x 100dvh` alanı doldurur.
-- Görsel `object-fit: cover` ile ekranı kenardan kenara kaplar.
-- Tam ekran butonu hiçbir URL yönlendirmesi yapmaz.
-- Fullscreen başarısız olursa aynı sayfada kalır ve uyarı gösterir.
-- Desteklenen Android tarayıcılarda fullscreen sonrası `landscape` yön kilidi ister.
-- Hafif duman, bina ışıkları, pist ışıkları, su parıltısı, servis aracı ve helikopter gölge hareketleri bulunur.
-- Binalara dokunma ve seviye yükseltme korunur.
-- Görselin kırpılan orijinal ölçüsü: 1536x674 -> 1191x674.
+- Oyun arayüzünün tamamı 1536×674 tasarım yüzeyi olarak korunur.
+- Fullscreen açıldığında ekran oranı ne olursa olsun bütün tasarım görünür kalır.
+- `cover` ile UI kırpılması kaldırıldı.
+- Komutan, kaynaklar, sağ menü, alt menü ve Dünya aynı anda ekranda kalır.
+- Ekran oranından kalan küçük alanlar siyah olmak yerine aynı üs görselinin bulanık devamıyla doldurulur.
+- Android tarayıcı çubukları değiştiğinde ölçek birkaç kez yeniden hesaplanır.
+- Fullscreen butonu URL yönlendirmesi yapmaz.
+- Destekleyen Android tarayıcılarda yatay yön kilidi denenir.
+- v10'daki hafif canlı üs efektleri korunur.
 
 ## GitHub
-ZIP içindeki tüm dosyaları mevcut repo dosyalarının üzerine yükleyin:
+ZIP içindeki TÜM dosyaları mevcut dosyaların üzerine yükleyin:
 - index.html
 - style.css
 - game.js
 - README.md
 - assets/iron-wars-base.jpg
 
-ÖNEMLİ: Eski `assets/iron-wars-base.png` dosyası kalabilir ama v10 artık `.jpg` dosyasını kullanır.
+Eski `iron-wars-base.png` artık kullanılmıyor.
