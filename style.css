@@ -277,3 +277,21 @@ html,body{
 #fullscreenButton{
   z-index:90!important;
 }
+
+/* IRON WARS v15 gameplay overlay — v14 layout untouched */
+.v15-panel{position:fixed;inset:0;z-index:300;background:rgba(0,7,12,.68);display:grid;place-items:center}
+.v15-panel.hidden{display:none}
+.v15-card{position:relative;width:min(420px,86vw);background:linear-gradient(180deg,#12202a,#071015);border:1px solid #536673;box-shadow:0 18px 60px #000;padding:22px;color:#eaf2f5;font-family:Arial,sans-serif}
+#v15Close{position:absolute;right:10px;top:8px;background:none;border:0;color:white;font-size:30px}
+#v15Icon{font-size:42px} .v15-card h2{margin:6px 0;color:#fff}
+#v15Level{color:#e5b84d;margin-bottom:16px}
+.v15-stats{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.v15-stats div{background:#0b171e;border:1px solid #283943;padding:10px}
+.v15-stats span{display:block;font-size:12px;color:#8fa0aa}.v15-stats b{font-size:18px}
+.v15-progress{height:9px;background:#020608;margin:18px 0 7px;border:1px solid #34434b}
+.v15-progress i{display:block;height:100%;width:0;background:#d7a52d}
+#v15Timer{text-align:center;color:#aebac0;font-size:13px}
+#v15Upgrade{width:100%;margin-top:16px;padding:13px;background:#3f7626;border:1px solid #78a64f;color:white;font-weight:700}
+#v15Hud{position:fixed;left:50%;top:8px;transform:translateX(-50%);z-index:250;display:none;gap:5px;pointer-events:none}
+#v15Hud div{background:rgba(4,13,18,.9);border:1px solid #354650;padding:5px 9px;color:white;font:12px Arial}
+@media(max-width:900px){#v15Hud{display:none}}

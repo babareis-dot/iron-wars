@@ -1,18 +1,16 @@
-# IRON WARS v14
+# IRON WARS v15
 
-## v14 ana düzeltme
-- Ortadaki oyun ekranı artık kesinlikle kırpılmaz.
-- Kullanıcının onayladığı görüntüdeki sadece siyah yan barlar kaynak görselden çıkarıldı.
-- Oyun kompozisyonu `1191x674` olarak korunur.
-- Ekran oranı farklı olduğunda kalan alanlar siyah bırakılmaz.
-- Sağ/sol boşluklarda aynı üs/deniz/dağ görüntüsünün bulanık ve doğal devamı kullanılır.
-- Commander, kaynaklar, sol menü, sağ menü, Dünya ve alt menü aynı anda görünür kalır.
-- Fullscreen ve yatay kilit mantığı korunur.
-- Hafif duman/ışık/su/araç efektleri korunur.
+v14 ekran/tam ekran düzeni korunmuştur.
 
-## GitHub
-ZIP içindeki tüm dosyaları mevcut repo dosyalarının üzerine yükleyin.
+v15 ilk oynanış katmanı:
+- Haritadaki ana binalara dokunma/tıklama
+- Bina bilgi paneli
+- Bina seviyesi
+- Üretim ve dayanıklılık bilgisi
+- Çelik harcayarak geliştirme
+- 8 saniyelik geliştirme sayacı
+- Kaynak üretimi
+- Geliştirmelerin ve kaynakların localStorage ile cihazda kaydı
+- PC ve mobil dokunma desteği
 
-Yeni görseller:
-- `assets/iron-wars-base-v14.jpg`
-- `assets/iron-wars-fill-v14.jpg`
+GitHub'a ZIP içindeki TÜM dosyaları yükleyin. Yeni `v15.js` dosyasını da ana klasöre koymayı unutmayın.
