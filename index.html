@@ -45,7 +45,24 @@
     <div class="heli-shadow"></div>
   </div>
 
-  <!-- real fullscreen hit area over the visual icon -->
+  
+<div id="v17TopResources">
+  <div class="v17res money"><small>Para</small><b id="v17Money">0</b></div>
+  <div class="v17res oil"><small>Fuel</small><b id="v17Oil">50.000</b></div>
+  <div class="v17res steel"><small>Çelik</small><b id="v17Steel">100.000</b></div>
+  <div class="v17res copper"><small>Bakır</small><b id="v17Copper">100.000</b></div>
+  <div class="v17res gold"><small>Altın</small><b id="v17Gold">25.000</b></div>
+</div>
+
+<div id="v17Queue" class="hidden">
+  <div class="qtitle">ÜRETİM</div>
+  <div class="qname" id="v17QueueName">Çelik Fabrikası</div>
+  <div class="qbar"><i id="v17QueueBar"></i></div>
+  <div class="qtime" id="v17QueueTime">01:00</div>
+  <div class="qgain" id="v17QueueGain">+0</div>
+</div>
+
+<!-- real fullscreen hit area over the visual icon -->
   <button id="fullscreenButton" aria-label="Tam ekran" onclick="toggleFullscreen(event)">⛶</button>
 
   <div id="toast"></div>
@@ -90,6 +107,6 @@
   <div>🛢️ <b id="v15Oil">1.87M</b></div>
   <div>🔩 <b id="v15Steel">3.24M</b></div>
 </div>
-<script src="v15.js"></script>
+<script src="v17.js"></script>
 </body>
 </html>
